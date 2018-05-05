@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="App">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CRUD de Usuários</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+  <link href="css/sweetalert.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-route.min.js"></script>
+</head>
+
+<body ng-controller="UsuarioController">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default page-header">
+          <div class="panel-heading text-center"><strong><span ng-hide="id">CADASTRAR</span><span ng-show="id">ALTERAR</span> USUÁRIO</strong></div>
+          <div class="panel-body">
+            <form name="form" method="POST">
+              <input type="hidden" name="id" id="id" ng-model="id" value="usuario.id">
+              <div class="row">
+                <div class="col-sm-5 form-group">
+                  <label for="nome">Nome*:</label>
+                  <input type="input" class="form-control" autofocus id="nome" ng-model="nome" value="usuario.nome" ng-required="true">
+                </div>
+                <div class="col-sm-4 form-group">
+                  <label for="cpf">CPF*:</label>
+                  <input type="input" class="form-control" id="cpf" ng-model="cpf" value="usuario.cpf" ng-required="true" ui-mask="999.999.999-99">
+                </div>
+                <div class="col-sm-3 form-group">
+                  <label for="celular">Celular*:</label>
+                  <input type="input" class="form-control" id="celular" ng-model="celular" value="usuario.celular" ng-required="true" ui-mask="(99) 99999-999?9">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-7 form-group">
+                  <label for="email">E-mail*:</label>
+                  <input type="email" class="form-control" id="email" ng-model="email" value="usuario.email" ng-required="true">
+                </div>
+                <div class="col-sm-5 form-group">
+                  <label for="senha">Senha*:</label>
+                  <input type="password" class="form-control" id="senha" ng-model="senha" value="usuario.senha" ng-required="true">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-success" ng-disabled="form.$invalid" ng-click="cadastrar(nome, cpf, celular, email, senha, form.$valid)" ng-hide="id"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> &nbsp;Cadastrar</button><button type="submit" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="alterar(id, nome, cpf, celular, email, senha, form.$valid)" ng-show="id"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> &nbsp;Alterar</button> &nbsp;&nbsp;<button type="button" class="btn btn-default" ng-click="limpar()"><span ng-hide="id">Limpar</span><span ng-show="id">Cancelar</span></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row page-header">
+      <div class="table-responsive">
+        <table class="table table-striped text-center">
+          <caption>Total de <b>{{listar.length}}</b> usuários cadastrados.</caption>
+          <thead>
+            <tr>
+              <th class="text-center">#</th>
+              <th class="text-center">Nome</th>
+              <th class="text-center">CPF</th>
+              <th class="text-center">Celular</th>
+              <th class="text-center">E-mail</th>
+              <th class="text-center">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="usuario in listar track by $index">
+              <td>{{$index+1}}</td>
+              <td>{{usuario.nome}}</td>
+              <td>{{usuario.cpf}}</td>
+              <td>{{usuario.celular}}</td>
+              <td>{{usuario.email}}</td>
+              <td><button type="button" class="btn btn-primary btn-xs" title="Alterar" ng-click="preAlterar(usuario)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button> &nbsp;<button type="button" class="btn btn-danger btn-xs" title="Remover" ng-click="remover(usuario.id, $index)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div> <!-- /container -->
+
+  <script src="js/main.js"></script>
+  <script src="js/usuario-controller.js"></script>
+  <script src="js/sweetalert.min.js"></script>
+  <script src="js/mask.min.js"></script>
+</body>
+</html>

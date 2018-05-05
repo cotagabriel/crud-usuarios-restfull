@@ -1,0 +1,3 @@
+input.ng-invalid.ng-touched:not(.ng-empty) {
+  border: 1px solid red;
+}
