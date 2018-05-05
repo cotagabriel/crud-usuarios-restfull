@@ -1,8 +1,8 @@
-# CRUD de usários
+# CRUD de usuários RESTFull
 
-Este repositório contém o backend e front de um CRUD de usuários utilizando REST API com Flask e Flask-SQLAlchemy.
+Este repositório contém o backend e front de um CRUD de usuários utilizando RESTFull API com Flask, Flask-RESTFul e Flask-SQLAlchemy.
 
-* Backend: Python, Flask, Flask-SQLAlchemy, Flask-Migrate, Flask-Script
+* Backend: Python, Flask, Flas-RESTFul, Flask-SQLAlchemy, Flask-Migrate, Flask-Script
 * Frontend: JavaScript, AngularJS, Bootstrap CSS, SweetAlert e AngularJS ui-Mask
 
 Para mais detalhes veja o requirements.txt.
@@ -12,8 +12,8 @@ Para mais detalhes veja o requirements.txt.
 
 **Clone o repositório:**
 ```
-$ git clone https://github.com/cotagabriel/crud-usuarios.git
-$ cd crud-usuarios
+$ git clone https://github.com/cotagabriel/crud-usuarios-restfull.git
+$ cd crud-usuarios-restfull
 ```
 
 
